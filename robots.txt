@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lbk-buzz.vercel.app/sitemap.xml
