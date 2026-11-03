@@ -110,16 +110,17 @@ body.reading main>#lecture{display:block}
 .lec .cover{width:100%;border-radius:20px;margin-bottom:1.6rem}
 .corps{font-size:1.1rem;line-height:1.75;overflow-wrap:anywhere}
 .corps p{margin:0 0 1.1rem}
-.corps img{height:auto;border-radius:16px;margin:1rem 0}
-.corps figure{margin:1.2rem 0}
+.corps img{width:100%!important;max-width:100%;height:auto!important;border-radius:16px;margin:1rem 0}
 .corps figcaption{color:var(--muted);font-size:.9rem}
 .corps a{color:inherit;font-weight:600;text-decoration:underline;text-underline-offset:3px}
 .corps iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:16px}
-.corps .wp-block-gallery{display:grid;gap:.8rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));padding:0;margin:1rem 0}
-.corps .wp-block-gallery figure{margin:0}
+.corps .wp-block-gallery{display:block;padding:0;margin:1rem 0}
+.corps figure,.corps .wp-block-gallery figure{width:100%;max-width:100%;margin:0 0 1rem}
 .corps h2,.corps h3{margin:1.8rem 0 .8rem}
 .vis.photo{padding:0;min-height:300px}
 .vis.photo img{position:absolute;inset:0;top:0;right:0;width:100%;height:100%;border-radius:0;object-fit:cover}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tags{color:var(--yel)}}
+:root[data-theme="dark"] .tags{color:var(--yel)}
 </style>
 </head>
 <body>
@@ -209,8 +210,8 @@ d.querySelectorAll('*').forEach(function(n){Array.prototype.slice.call(n.attribu
 var k=at.name.toLowerCase(),v=at.value;
 var bad=(k.indexOf('on')===0)||((k==='href'||k==='src'||k==='xlink:href')&&/^\s*(javascript|data|vbscript):/i.test(v));
 if(bad)n.removeAttribute(at.name)})});
-d.querySelectorAll('a').forEach(function(a){a.target='_blank';a.rel='noopener'});
-d.querySelectorAll('img').forEach(function(i){i.loading='lazy';i.removeAttribute('width');i.removeAttribute('height')});
+d.querySelectorAll('a').forEach(function(a){a.replaceWith.apply(a,Array.prototype.slice.call(a.childNodes))});
+d.querySelectorAll('img').forEach(function(i){i.loading='lazy';i.removeAttribute('width');i.removeAttribute('height');i.setAttribute('sizes','(max-width:800px) 100vw, 760px')});
 return d.body.innerHTML}
 function show(a){
 L.textContent='';
